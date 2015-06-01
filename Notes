@@ -1,0 +1,3 @@
+Note:
+This project was created with Python 2.7 and Django 1.8.2. If another developer were to continue with this project, Python environment must be set to these versions. I recommend using virtualenv and virtualenvwrapper to set this environment separately from the already-existing environment.
+
