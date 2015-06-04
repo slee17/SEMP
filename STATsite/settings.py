@@ -23,6 +23,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '$n%#cfmwx#10^n&+w9t)p^6(xo@@)07um7$ywak7s%uc^d$20&'
 
 # SECURITY WARNING: don't run with debug turned on in production!
+# When switching to False, properly set the ALLOWED_HOSTS setting!
 DEBUG = True
 
 ALLOWED_HOSTS = []
@@ -30,14 +31,24 @@ ALLOWED_HOSTS = []
 
 # Application definition
 
-INSTALLED_APPS = (
-    'django.contrib.admin',
-    'django.contrib.auth',
-    'django.contrib.contenttypes',
-    'django.contrib.sessions',
-    'django.contrib.messages',
-    'django.contrib.staticfiles',
+DEFAULT_APPS = ( # the names of all Django applications that are activated in this Django instance
+    'django.contrib.admin', # the admin site
+    'django.contrib.auth', # an authentication system
+    'django.contrib.contenttypes', # a framework for content types
+    'django.contrib.sessions', # a session framework
+    'django.contrib.messages', # a messaging framework
+    'django.contrib.staticfiles', # a framework for managing static files
 )
+
+THIRD_PARTY_APPS = (
+    # nothing yet
+)
+
+LOCAL_APPS = (
+    'polls',
+)
+
+INSTALLED_APPS = DEFAULT_APPS + THIRD_PARTY_APPS + LOCAL_APPS
 
 MIDDLEWARE_CLASSES = (
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -55,7 +66,8 @@ ROOT_URLCONF = 'STATsite.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+
+        'DIRS': [os.path.join(BASE_DIR, 'templates')], # A list of filesystem directories to check when loading Django templates; secret path.
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -76,9 +88,13 @@ WSGI_APPLICATION = 'STATsite.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    }
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'SLee17',
+        'USER': 'SLee17',
+        'PASSWORD': '',
+        'HOST': 'localhost',
+        'PORT': 5432,
+    },
 }
 
 

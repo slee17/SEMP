@@ -17,5 +17,8 @@ from django.conf.urls import include, url
 from django.contrib import admin
 
 urlpatterns = [
+	url(r'^polls/', include('polls.urls', namespace="polls")), # Regular expressions for the include() functions don't have a $ but rather a trailing slash.
+											# When Django encounters include(), it chops off whatever part of the URL matched up to that point
+											# and sends the remaining string to the included URLconf for further processing.
     url(r'^admin/', include(admin.site.urls)),
 ]
