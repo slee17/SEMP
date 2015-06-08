@@ -31,21 +31,30 @@ ALLOWED_HOSTS = []
 
 # Application definition
 
-DEFAULT_APPS = ( # the names of all Django applications that are activated in this Django instance
+DEFAULT_APPS = ( # the names of all Django applications that are activated in
+                 # this Django instance
     'django.contrib.admin', # the admin site
     'django.contrib.auth', # an authentication system
     'django.contrib.contenttypes', # a framework for content types
+                                   # used by the authentication application to
+                                   # track models installed in your database
     'django.contrib.sessions', # a session framework
     'django.contrib.messages', # a messaging framework
     'django.contrib.staticfiles', # a framework for managing static files
 )
+
+ACCOUNT_ACTIVATION_DAYS = 7 # For registration configuration.
 
 THIRD_PARTY_APPS = (
     # nothing yet
 )
 
 LOCAL_APPS = (
-    'polls',
+    'registration',
+    'registration.supplements.default' # Or set REGISTRATION_SUPPLEMENT_CLASS
+                                       # to None (no registration supplemental
+                                       # information will be used).
+    # 'mailer', # Using django-mailer instead of Django's default email system.
 )
 
 INSTALLED_APPS = DEFAULT_APPS + THIRD_PARTY_APPS + LOCAL_APPS
@@ -67,7 +76,9 @@ TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
 
-        'DIRS': [os.path.join(BASE_DIR, 'templates')], # A list of filesystem directories to check when loading Django templates; secret path.
+        # A list of filesystem directories to check for loading Django templates.
+        # Secret path.
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -116,3 +127,10 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.8/howto/static-files/
 
 STATIC_URL = '/static/'
+
+# Emails
+# Configuring so that the console backend writes the emails that would be sent.
+# Uses stdout by default; can use a different stream-like object by providing the
+# stream keyword argument when constructing the connection.
+# NOT TO BE USED FOR PRODUCTION
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'

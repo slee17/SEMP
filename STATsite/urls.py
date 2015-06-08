@@ -13,12 +13,20 @@ Including another URLconf
     1. Add an import:  from blog import urls as blog_urls
     2. Add a URL to urlpatterns:  url(r'^blog/', include(blog_urls))
 """
-from django.conf.urls import include, url
+from django.conf.urls import patterns, include, url # Note: django.conf.urls.defaults has been removed since Django 1.6.
 from django.contrib import admin
 
+admin.autodiscover()
+
 urlpatterns = [
-	url(r'^polls/', include('polls.urls', namespace="polls")), # Regular expressions for the include() functions don't have a $ but rather a trailing slash.
+	# url(r'^authorization/', include(authorization.urls)), # Regular expressions for the include() functions don't have a $ but rather a trailing slash.
 											# When Django encounters include(), it chops off whatever part of the URL matched up to that point
 											# and sends the remaining string to the included URLconf for further processing.
     url(r'^admin/', include(admin.site.urls)),
+    # url(r'^accounts/', include('registration.backends.default.urls')), # Not sure where this is from but Python complains about the use of urls.
+
+    # Add django-inspectional-registration urls. The urls also define
+    # Login, Logout and password_change or lot more for handle
+    # registration.
+    url('^registration/', include('registration.urls')),
 ]

@@ -1,3 +1,11 @@
-Note:
-This project was created with Python 2.7 and Django 1.8.2. If another developer were to continue with this project, Python environment must be set to these versions. I recommend using virtualenv and virtualenvwrapper to set this environment separately from the already-existing environment.
+Supported environment:
+Python 2.7
+Django 1.8.2
 
+If another developer were to continue with this project, Python environment must be set to these versions. Use of virtualenv and virtualenvwrapper is strongly recommended.
+
+Apps:
+The following apps were downloaded from the web and tailored to fit the specific purposes within the project.
+Registration - https://github.com/lambdalisue/django-inspectional-registration
+	- Emailing is actively disabled on this machine and thus has not been tested.
+	- Some of the templates had to be manually copied and pasted into the system's python package. (text files in templates\registration to C:\Python27\Lib\site-packages\registration\templates\registration)
