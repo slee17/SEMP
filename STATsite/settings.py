@@ -28,7 +28,6 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-
 # Application definition
 
 DEFAULT_APPS = ( # the names of all Django applications that are activated in
@@ -43,18 +42,18 @@ DEFAULT_APPS = ( # the names of all Django applications that are activated in
     'django.contrib.staticfiles', # a framework for managing static files
 )
 
-ACCOUNT_ACTIVATION_DAYS = 7 # For registration configuration.
-
 THIRD_PARTY_APPS = (
     # nothing yet
 )
 
 LOCAL_APPS = (
+    'mainpage',
     'registration',
-    'registration.supplements.default' # Or set REGISTRATION_SUPPLEMENT_CLASS
-                                       # to None (no registration supplemental
-                                       # information will be used).
+    # 'registration.supplements.default',
+    'supplement',
     # 'mailer', # Using django-mailer instead of Django's default email system.
+    # 'guardian',
+    'shifts',
 )
 
 INSTALLED_APPS = DEFAULT_APPS + THIRD_PARTY_APPS + LOCAL_APPS
@@ -134,3 +133,14 @@ STATIC_URL = '/static/'
 # stream keyword argument when constructing the connection.
 # NOT TO BE USED FOR PRODUCTION
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+# Guarding configuration
+AUTHENTICATION_BACKENDS = (
+    'django.contrib.auth.backends.ModelBackend', # This is default.
+    'guardian.backends.ObjectPermissionBackend',
+    )
+ANONYMOUS_USER_ID = -1
+
+# Registration configuration
+REGISTRATION_SUPPLEMENT_CLASS = "supplement.models.MyRegistrationSupplement"
+ACCOUNT_ACTIVATION_DAYS = 7
