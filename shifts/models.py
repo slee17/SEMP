@@ -17,9 +17,9 @@ class Shift(models.Model):
 		('WC', 'Writing Center'),
 		('ATH', 'Athenaeum'),
 	)
-	owner = models.CharField(max_length=25, blank=True) # A shift may not have an owner.
+	owner = models.CharField(max_length=25, default='None') # A shift may not have an owner.
 	day_of_the_week = models.CharField(max_length=2, choices=DAYS, default='Monday')
-	location = models.CharField(max_length=25, blank=True) # Fix later?
+	location = models.CharField(max_length=25, default='Unspecified') # Fix later?
 	department = models.CharField(max_length=5, choices=DEPARTMENTS, default='STAT')
 
 #	if self.department == 'STAT':
@@ -43,10 +43,13 @@ class Shift(models.Model):
 									default = False)
 
 	def __unicode__(self):
-		return '%s | %s | %s' % (
+		return '%s | %s | %s | %s | %s | %s' % (
+			unicode(self.department),
+			unicode(self.location),
 			unicode(self.date),
-			unicode(self.time),
-			unicode(self.owner))
+			unicode(self.day_of_the_week),
+			unicode(self.owner),
+			unicode(self.activated))
 	
 	""" 
 	Methods on an instance of Shift.
