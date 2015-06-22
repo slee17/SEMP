@@ -1,0 +1,13 @@
+{% extends 'admin/base_site.html' %}
+
+{% block content %}
+<form action="" method="post">
+	{% csrf_token %}
+	{{ owner_form }}
+	<p>The following shifts will be (re)assigned:</p>
+	<ul>{{ shifts|unordered_list }}</ul>
+
+	<input type="hidden" name="action" value="assign_owner" /> <!--hidden is essential for Django to recognize the form submission as an admin action-->
+	<input type="submit" name="apply" value="Assign owner" />
+</form>
+{% endblock %}

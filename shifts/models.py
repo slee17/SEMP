@@ -1,6 +1,13 @@
 from django.db import models
 # from django.contrib.auth.models import User
 
+"""
+class UserData(models.Model):
+	user = models.ForeignKey(User, editable=False)
+	class Meta:
+		abstract = True
+"""
+
 class Shift(models.Model):
 	DAYS = (
 		('M', 'Monday'),
