@@ -8,6 +8,8 @@ from .models import Shift, Sale
 from django.contrib.auth.models import User
 
 class ShiftAdmin(admin.ModelAdmin):
+	
+	list_display = ('id', 'department', 'location', 'day_of_the_week', 'time', 'owner')
 	actions = ['activate', 'deactivate', 'assign_owner']
 
 	def activate(self, request, queryset):

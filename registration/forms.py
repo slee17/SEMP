@@ -83,7 +83,7 @@ class ActivationForm(forms.Form):
 
 
 class RegistrationForm(forms.Form):
-    """Form for registration a user account.
+    """Form for registration of a user account.
 
     Validates that the requested username is not already in use, and requires 
     the email to be entered twice to catch typos.
@@ -119,7 +119,7 @@ class RegistrationForm(forms.Form):
         except User.DoesNotExist:
             return self.cleaned_data['username']
         raise forms.ValidationError(_(
-            "A user with that username already exists."))
+            "The username is already in use."))
 
     def clean(self):
         """Check the passed two email are equal

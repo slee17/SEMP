@@ -1,7 +1,9 @@
 from django.db import models
+from django.contrib.auth.models import User
 from registration.supplements import RegistrationSupplementBase
 
-class MyRegistrationSupplement(RegistrationSupplementBase):
+class RegistrationSupplement(RegistrationSupplementBase):
+	user = models.OneToOneField(User, related_name='supplement')
 	DEPARTMENTS = (
 		('STAT', 'STAT'),
 		('WC', 'Writing Center'),
