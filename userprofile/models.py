@@ -1,13 +1,18 @@
 from django.db import models
 from django.contrib.auth.models import User
 
+"""
+User - Position (foreign key: one-to-many)
+"""
+
 class UserProfile(models.Model):
 	user = models.OneToOneField(User, related_name='profile', primary_key=True)
 		# user is the primary key for the Employee model.
-	is_lead = models.BooleanField(default = False)
-
+	# is_lead = models.BooleanField(default = False)
+	
 class Position(models.Model): # Use foreign key to allow a user to have more than one department and/or position.
-	user = models.ForeignKey(UserProfile, related_name='positions')
+	# user = models.ForeignKey(UserProfile, related_name='positions')
+	user = models.ForeignKey(User, related_name='positions')
 	DEPT = (
 		('STAT', 'STAT'),
 		('WC', 'Writing Center'),
@@ -32,6 +37,9 @@ class Position(models.Model): # Use foreign key to allow a user to have more tha
 	)
 
 	department = models.CharField("Department", max_length=5, choices=DEPT)
-	POSITIONS = get_positions(DEPT)
-	position = models.CharField("Position", max_length=10, choices=POSITIONS)
+	# POSITIONS = get_positions(DEPT)
+	# position = models.CharField("Position", max_length=10, choices=POSITIONS)
 	status = models.CharField("Status", max_length=10, choices=STATUS)
+
+	def __unicode__(self):
+		return '%s | %s' % (self.department, self.status)
