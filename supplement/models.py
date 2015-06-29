@@ -4,8 +4,8 @@ from registration.supplements import RegistrationSupplementBase
 
 class RegistrationSupplement(RegistrationSupplementBase):
 	# user = models.OneToOneField(User, related_name='supplement')
-	first_name = models.CharField("First name", max_length=20)
-	last_name = models.CharField("Last name", max_length=20)
+	# first_name = models.CharField("First name", max_length=20)
+	# last_name = models.CharField("Last name", max_length=20)
 	DEPARTMENTS = (
 		('STAT', 'STAT'),
 		('WC', 'Writing Center'),
