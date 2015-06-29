@@ -1,9 +1,9 @@
 # coding=utf-8
 """
-Forms of django-inspectional-registration
+Forms of SEMP-registration
 
-This is a modification of django-registration_ ``forms.py``
-The original code is written by James Bennett
+This is a modification of django-inspectional-registration, ``forms.py``
+The original code is written by Alisue <lambdalisue@hashnote.net>.
 
 .. _django-registration: https://bitbucket.org/ubernostrum/django-registration
 
@@ -38,7 +38,7 @@ Original License::
     (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
     OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 """
-__author__ = 'Alisue <lambdalisue@hashnote.net>'
+__author__ = 'Rachel Lee <slee17@cmc.edu>'
 __all__ = (
     'ActivationForm', 'RegistrationForm', 
     'RegistrationFormNoFreeEmail',
@@ -48,6 +48,8 @@ __all__ = (
 from django import forms
 from django.utils.translation import ugettext_lazy as _
 from registration.compat import get_user_model
+
+from userprofile.models import Position
 
 attrs_dict = {'class': 'required'}
 
@@ -83,10 +85,14 @@ class ActivationForm(forms.Form):
 
 
 class RegistrationForm(forms.Form):
-    """Form for registration of a user account.
+    """
+    Form for registration of a user account.
 
     Validates that the requested username is not already in use, and requires 
     the email to be entered twice to catch typos.
+
+    Also asks for personal information crucial for inspecting registration
+    profile, such as first name, last name, status, position, and status.
 
     Subclasses should feel free to add any additional validation they need, but
     should avoid defining a ``save()`` method -- the actual saving of collected
@@ -108,6 +114,33 @@ class RegistrationForm(forms.Form):
     email2 = forms.EmailField(widget=forms.TextInput(attrs=dict(attrs_dict,
                                                                 maxlength=75)),
                              label=_("E-mail (again)"))
+
+    # Widget for each field is specified in order to be consistent with the
+    # original code written by Alisue.
+    first_name = forms.CharField(widget=forms.TextInput(attrs=attrs_dict),
+                                label=_("First name"))
+    last_name = forms.CharField(widget=forms.TextInput(attrs=attrs_dict),
+                                label=_("Last name"))
+    
+    POSITIONS = (
+        ('LTA', 'STAT | LTA'),
+        ('RTA', 'STAT | RTA'),
+        ('MTA', 'STAT | MTA'),
+        ('CONS', 'Writing Center | Consultant'),
+        ('SERVER', 'Ath | Server'),
+        ('KIT', 'Ath | Kitchen'),
+        ('SECR', 'Ath | Security'),
+        ('MD', 'Ath | MD'),
+    )
+
+    STATUS = (
+        ('RGLR', 'Regular'),
+        ('LEAD', 'Lead'),
+        ('SPV', 'Supervisor'),
+    )
+ 
+    position = forms.ChoiceField(choices=POSITIONS)
+    status = forms.ChoiceField(choices=STATUS)
 
     def clean_username(self):
         """

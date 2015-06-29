@@ -26,10 +26,12 @@ class PositionsInline(admin.StackedInline):
 class UserAdmin(UserAdmin):
 # class UserAdmin(NestedModelAdmin):
 	# model = User
-	list_display = ['username', 'get_is_lead', 'get_department']
+	# list_display = ['username', 'get_department']
+	"""
 	def get_is_lead(self, obj):
 		return '%s' % (obj.profile.is_lead)
 	get_is_lead.short_description = 'is_lead'
+	"""
 	def get_department(self, obj):
 		return ",".join([k.department for k in obj.profile.positions_set.all()])
 		# return '%s' % (obj.profile.positions.department)

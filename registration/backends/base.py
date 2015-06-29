@@ -39,8 +39,8 @@ class RegistrationBackendBase(object):
         """
         return get_site(request)
 
-    def register(self, username, email, request,
-                 supplement=None, send_email=True):
+    def register(self, username, email, first_name, last_name, position, status,
+                 request, supplement=None, send_email=True):
         """register a new user account with given ``username`` and ``email``
 
         Returning should be an instance of new ``User``

@@ -115,17 +115,18 @@ class ActivationView(TemplateResponseMixin, FormMixin,
 
 
 class RegistrationView(FormMixin, TemplateResponseMixin, ProcessFormView):
-    """A complex view for registration
+    """
+    A complex view for registration.
 
     GET:
-        Display an RegistrationForm which has ``username``, ``email1`` and ``email2``
-        for registration.
+        Display a RegistrationForm which has ``username``, ``email1``, ``email2``,
+        ``first_name``, ``last_name``, ``position``, and ``status`` for registration.
         ``email1`` and ``email2`` should be equal to prepend typo.
 
         ``form`` and ``supplement_form`` is in context to display these form.
 
     POST:
-        Register the user with passed ``username`` and ``email1``
+        Register the user with passed ``username``, ``email1``, and personal information.
     """
     template_name = r'registration/registration_form.html'
 
@@ -156,19 +157,25 @@ class RegistrationView(FormMixin, TemplateResponseMixin, ProcessFormView):
         return supplement_form_class(**self.get_form_kwargs())
 
     def form_valid(self, form, supplement_form=None):
-        """register user with ``username`` and ``email1``
+        """
+        Register user with ``username``, ``email1``, ``first_name``, ``last_name``,
+        ``position``, and ``status``.
 
-        this method is called when form validation has successed.
+        This method is called when form validation has successed.
         """
         username = form.cleaned_data['username']
         email = form.cleaned_data['email1']
+        first_name = form.cleaned_data['first_name']
+        last_name = form.cleaned_data['last_name']
+        position = form.cleaned_data['position']
+        status = form.cleaned_data['status']
         if supplement_form:
             supplement = supplement_form.save(commit=False)
         else:
             supplement = None
-        self.new_user = self.backend.register(username, email,
-                                              self.request,
-                                              supplement=supplement)
+        self.new_user = self.backend.register(username, email, first_name, last_name,
+                                                position, status, self.request,
+                                                supplement=supplement)
         profile = self.new_user.registration_profile
         # save the profile on the session so that the RegistrationCompleteView
         # can refer the profile instance.

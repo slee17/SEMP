@@ -17,7 +17,7 @@ class RegistrationSupplement(RegistrationSupplementBase):
 		('SPV', 'Supervisor'),
 	)
 	department = models.CharField("Department", max_length=5, choices=DEPARTMENTS)
-	status = models.CharField("Status", max_length=10, choices=STATUSES)
+	# status = models.CharField("Status", max_length=10, choices=STATUSES)
 
 	def __unicode__(self):
 		# A summary of this supplement.

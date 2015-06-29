@@ -82,9 +82,11 @@ class RegistrationManager(models.Manager):
 
     """
     @transaction_atomic
-    def register(self, username, email, first_name, site, send_email=True):
+    def register(self, username, email, first_name, last_name, position, status,
+                    site, send_email=True):
     # def register(self, username, email, site, send_email=True):
-        """register new user with ``username`` and ``email``
+        """register new user with ``username``, ``email``, and other
+        relevant personal information.
 
         Create a new, inactive ``User``, generate a ``RegistrationProfile``
         and email notification to the ``User``, returning the new ``User``.
@@ -102,13 +104,16 @@ class RegistrationManager(models.Manager):
 
         """
         User = get_user_model()
-        new_user = User.objects.create_user(username, email, 'password')
+
+        # create_user should accept all required fields in registration as arguments.
+        new_user = User.objects.create_user(username, email, first_name, last_name,
+                                            position, status, 'password')
         new_user.set_unusable_password()
-        # new_user.first_name = 
-        # new_user.last_name = 
-        # new_user.department =
-        # new_user.position =
         new_user.is_active = False
+        new_user.first_name = first_name
+        new_user.last_name = last_name
+        new_user.position = position
+        new_user.status = status
         new_user.save()
 
         profile = self.create(user=new_user)
