@@ -119,20 +119,19 @@ class DefaultRegistrationBackend(RegistrationBackendBase):
 
     """
 
-    def register(self, username, email, request,
-                 supplement=None, send_email=None):
+    def register(self, username, email, first_name, last_name, position, status,
+                    request, supplement=None, send_email=None):
         """
-        Register new user with ``username``, ``email``, ``department``, and
-        ``status``.
+        Register new user with ``username``, ``email``, ``first name``, ``last name``,
+        ``position``, and ``status``.
 
-        Given a username, email address, department, and status, register a
+        Given a username, email address, and other personal information, register a
         new user account, which will initially be inactive and has unusable password.
 
-        Along with the new ``User`` object, a new
-        ``registration.models.RegistrationProfile`` will be created, tied to
-        that ``User``, containing the inspection status and activation key
-        which will be used for this account (activation key is not generated
-        until its inspection status is set to ``accepted``).
+        Along with the new ``User`` object, a new ``registration.models.RegistrationProfile``
+        will be created, tied to that ``User``, containing the inspection status
+        and activation key which will be used for this account (activation key
+        is not generated until its inspection status is set to ``accepted``).
 
         An email will be sent to the supplied email address; the email will be
         rendered using two templates. See the documentation for
@@ -154,8 +153,8 @@ class DefaultRegistrationBackend(RegistrationBackendBase):
             send_email = settings.REGISTRATION_REGISTRATION_EMAIL
 
         new_user = RegistrationProfile.objects.register(
-            username, email, self.get_site(request),
-            send_email=send_email,
+            username, email, first_name, last_name, position, status,
+            self.get_site(request), send_email=send_email,
         )
         profile = new_user.registration_profile
 
@@ -174,8 +173,9 @@ class DefaultRegistrationBackend(RegistrationBackendBase):
 
     def accept(self, profile, request, send_email=None, message=None,
                force=False):
-        """accept the account registration of ``profile``
-
+        """
+        Accept the account registration of ``profile``
+        
         Given a profile, accept account registration, which will
         set inspection status of ``profile`` to ``accepted`` and generate new
         activation key of ``profile``.
