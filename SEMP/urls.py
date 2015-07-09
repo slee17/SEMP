@@ -25,6 +25,7 @@ urlpatterns = [
     url(r'^$', include('mainpage.urls')), # mainpage.views.home
     url(r'^admin/', include(admin.site.urls)),
     # url(r'^accounts/', include('registration.backends.default.urls')), # Not sure where this is from but Python complains about the use of urls.
-
-    url('^registration/', include('registration.urls')),
+    url(r'^registration/', include('registration.urls')),
+    url(r'^accounts/', include('accounts.urls')),
+    url(r'^shifts/', include('shifts.urls')),
 ]

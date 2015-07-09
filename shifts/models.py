@@ -1,79 +1,73 @@
 from django.db import models
+from django.conf import settings
 from django.contrib.auth.models import User
 
-"""
-class UserData(models.Model):
-	user = models.ForeignKey(User, editable=False)
-	class Meta:
-		abstract = True
-"""
+from datetime import date, datetime, time, timedelta # For calculating shift duration.
 
 class Shift(models.Model):
-	DAYS = (
-		('M', 'Monday'),
-		('TU', 'Tuesday'),
-		('W', 'Wednesday'),
-		('TH', 'Thursday'),
-		('F', 'Friday'),
-		('SA', 'Saturday'),
-		('SU', 'Sunday'),
-	)
+    owner = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='shifts',
+        blank=True, null=True) # A shift may not have an owner.
 
-	DEPARTMENTS = (
-		('STAT', 'STAT'),
-		('WC', 'Writing Center'),
-		('ATH', 'Athenaeum'),
-	)
-	owner = models.CharField(max_length=25, default='None') # A shift may not have an owner.
-	day_of_the_week = models.CharField(max_length=2, choices=DAYS, default='Monday')
-	location = models.CharField(max_length=25, default='Unspecified') # Fix later?
-	department = models.CharField(max_length=5, choices=DEPARTMENTS, default='STAT')
+    # Choices for fields. Add more choices as necessary.
+    DAYS = (
+        ('M', 'Monday'),
+        ('TU', 'Tuesday'),
+        ('W', 'Wednesday'),
+        ('TH', 'Thursday'),
+        ('F', 'Friday'),
+        ('SA', 'Saturday'),
+        ('SU', 'Sunday'),
+    )
+    DEPARTMENTS = (
+        ('STAT', 'STAT'),
+        ('WC', 'Writing Center'),
+        ('ATH', 'Athenaeum'),
+    )
+    LOCATIONS = (
+        ('POPPA', 'Poppa'),
+        ('SOUTH', 'South'),
+        ('RYAL', 'Ryal'),
+    )
 
-#	if self.department == 'STAT':
-#		CATEGORIES = (
-#			('LTA', 'LTA'),
-#			('RTA', 'RTA'),
-#			('MTA', 'MTA'),
-#			('OTA', 'OTA'),
-#		)
-#	else if self.department == 'WR':
-#		CATEGORIES
-# 	category = models.CharField(max_length = 25, blank=True)
-	
-	start_date = models.DateField(blank=True, null=True)
-	end_date = models.DateField(blank=True, null=True)
+    day_of_the_week = models.CharField(max_length=2, choices=DAYS, blank=True, null=True)
+    location = models.CharField(max_length=25, choices=LOCATIONS, default='Unspecified') # TODO
+    department = models.CharField(max_length=5, choices=DEPARTMENTS, default='STAT')
+    start_date = models.DateField(blank=True, null=True)
+    end_date = models.DateField(blank=True, null=True)
+    start_time = models.TimeField(default='12:00:00')
+    end_time = models.TimeField(default='14:00:00')
+    hours = models.DurationField(editable=False) # DurationField is an interval in PostgreSQL.
+    activated = models.BooleanField(verbose_name = ('Activate'),
+                                    default = False)
 
-	time = models.TimeField()
-#	time = models.DurationField()
-	date = models.DateField()
-	activated = models.BooleanField(verbose_name = ('Activate'),
-									default = False)
+    def __unicode__(self):
+        return '%s | %s | %s | %s | %s | %s' % (
+            unicode(self.department),
+            unicode(self.location),
+            unicode(self.day_of_the_week),
+            unicode(self.start_time),
+            unicode(self.end_time),
+            unicode(self.owner)
+        )
+    
+    # Methods on an instance of Shift (i.e. row-level).
+    def assign_owner(self):
+        ACTIVATED_USERS = User.objects.get(activated=True)
+        self.owner = models.CharField(max_length, choices=ACTIVATED_USERS)
 
-	def __unicode__(self):
-		return '%s | %s | %s | %s | %s | %s' % (
-			unicode(self.department),
-			unicode(self.location),
-			unicode(self.date),
-			unicode(self.day_of_the_week),
-			unicode(self.owner),
-			unicode(self.activated))
-	
-	""" 
-	Methods on an instance of Shift.
-	"""
-	def assign_owner(self):
-		from django.contrib.auth.models import User
-		ACTIVATED_USERS = User.objects.get(activated=True)
-		self.owner = models.CharField(max_length, choices=ACTIVATED_USERS)
-	# Go with model methods, not managers.
-	# def sell(self):
-	# def buy(self):
+    def save(self, *args, **kwargs): # Overwrite save() to calculate and save the duration of a shift.
+        temp_date = datetime(1,1,1,0,0,0)
+        self.hours = datetime.combine(temp_date, self.end_time) - datetime.combine(temp_date, self.start_time)
+        super(Shift, self).save(*args, **kwargs)
+"""
+    def sell(self, *args, **kwargs):
+        from django
+        seller = self.owner
+"""
 
-class Sale(Shift): # Multi-table inheritance.
-	shift = models.ForeignKey(Shift, related_name='shift_sale')
-	seller = models.CharField(max_length=25)
-	buyer = models.CharField(max_length=25)
-	# date = models.DateField()
-	posted = models.DateField(auto_now_add=True)
-	bought = models.DateField(auto_now_add=True)
-	# was_assigned
+    # Go with model methods, not managers.
+    # def sell(self):
+    # def buy(self):
+
+# class Sale(Shift): # Multi-table inheritance.
+# shift = models.ForeignKey(Shift, related_name='shift_sale')

@@ -99,6 +99,7 @@ class RegistrationForm(forms.Form):
     user data is delegated to the active registration backend.
 
     """
+    
     username = forms.RegexField(regex=r'^[\w.@+-]+$',
                                 max_length=30,
                                 widget=forms.TextInput(attrs=attrs_dict),
@@ -108,6 +109,7 @@ class RegistrationForm(forms.Form):
                                                  "only letters, numbers and "
                                                  "underscores.")
                                 })
+    
     email1 = forms.EmailField(widget=forms.TextInput(attrs=dict(attrs_dict,
                                                                 maxlength=75)),
                              label=_("E-mail"))
@@ -142,10 +144,11 @@ class RegistrationForm(forms.Form):
     position = forms.ChoiceField(choices=POSITIONS)
     status = forms.ChoiceField(choices=STATUS)
 
+    """
     def clean_username(self):
-        """
-        Validate that the username is alphanumeric and is not already in use.
-        """
+        
+        # Validate that the username is alphanumeric and is not already in use.
+        
         User = get_user_model()
         try:
             User.objects.get(username__iexact=self.cleaned_data['username'])
@@ -153,6 +156,7 @@ class RegistrationForm(forms.Form):
             return self.cleaned_data['username']
         raise forms.ValidationError(_(
             "The username is already in use."))
+    """
 
     def clean(self):
         """Check the passed two email are equal

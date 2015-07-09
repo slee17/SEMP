@@ -106,8 +106,9 @@ class RegistrationManager(models.Manager):
         User = get_user_model()
 
         # create_user should accept all required fields in registration as arguments.
-        new_user = User.objects.create_user(username, email, first_name, last_name,
-                                            position, status, 'password')
+        new_user = User.objects.create_user(username, email, 'password')
+        # new_user = User.objects.create_user(username, email, first_name, last_name,
+        #                                    position, status, 'password')
         new_user.set_unusable_password()
         new_user.is_active = False
         new_user.first_name = first_name

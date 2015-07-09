@@ -1,15 +1,17 @@
 from django.contrib import admin
+from django.contrib.auth import get_user_model
+from django.conf import settings
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render, render_to_response
 from django.template import RequestContext
 from django import forms
 
-from .models import Shift, Sale
-from django.contrib.auth.models import User
+from .models import Shift
+from .forms import ShiftAdminForm
 
 class ShiftAdmin(admin.ModelAdmin):
-	
-	list_display = ('id', 'department', 'location', 'day_of_the_week', 'time', 'owner')
+	form = ShiftAdminForm
+	list_display = ('department', 'location', 'day_of_the_week', 'start_time', 'end_time', 'hours', 'owner')
 	actions = ['activate', 'deactivate', 'assign_owner']
 
 	def activate(self, request, queryset):
@@ -22,7 +24,7 @@ class ShiftAdmin(admin.ModelAdmin):
 
 	class AssignOwnerForm(forms.Form):
 		_selected_action = forms.CharField(widget=forms.MultipleHiddenInput)
-		owner = forms.ModelChoiceField(User.objects)
+		owner = forms.ModelChoiceField(get_user_model().objects)
 
 	def assign_owner(self, request, queryset):
 		form = None
@@ -33,8 +35,9 @@ class ShiftAdmin(admin.ModelAdmin):
 			if form.is_valid():
 				new_owner = form.cleaned_data['owner']
 
-				queryset.update(owner = str(new_owner))
+				queryset.update(owner = new_owner)
 				
+				# For plural 's'.
 				count = 0
 				for shift in queryset:
 					count += 1
@@ -42,7 +45,7 @@ class ShiftAdmin(admin.ModelAdmin):
 				if count != 1:
 					plural = 's'
 
-				self.message_user(request, "Successfully assigned %s to %d shift%s." % (new_owner, count, plural))
+				self.message_user(request, "Successfully assigned %d shift%s to %s." % (count, plural, new_owner))
 				return HttpResponseRedirect(request.get_full_path())
 		
 		if not form:
@@ -50,6 +53,5 @@ class ShiftAdmin(admin.ModelAdmin):
 
 		return render_to_response('admin/assign_owner.html', {'shifts': queryset, 'owner_form': form},
 			context_instance=RequestContext(request))
-		assign_owner.short_description = "Assign owner to shifts"
 
 admin.site.register(Shift, ShiftAdmin)
