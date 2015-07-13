@@ -28,4 +28,5 @@ urlpatterns = [
     url(r'^registration/', include('registration.urls')),
     url(r'^accounts/', include('accounts.urls')),
     url(r'^shifts/', include('shifts.urls')),
+    url(r'^color_liker/', include('color_liker.urls')),
 ]

@@ -37,8 +37,8 @@ class Shift(models.Model):
     start_time = models.TimeField(default='12:00:00')
     end_time = models.TimeField(default='14:00:00')
     hours = models.DurationField(editable=False) # DurationField is an interval in PostgreSQL.
-    activated = models.BooleanField(verbose_name = ('Activate'),
-                                    default = False)
+    activated = models.BooleanField(verbose_name=('Activate'), default=False)
+    on_sale = models.BooleanField(verbose_name=('On sale'), default=False, editable=False)
 
     def __unicode__(self):
         return '%s | %s | %s | %s | %s | %s' % (
