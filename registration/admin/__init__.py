@@ -48,7 +48,7 @@ import django
 from django.db import transaction
 from django.http import HttpResponseRedirect
 from django.contrib import admin
-from django.contrib.admin.util import unquote
+from django.contrib.admin.utils import unquote
 from django.core.exceptions import PermissionDenied
 from django.core.urlresolvers import reverse
 from django.core.exceptions import ImproperlyConfigured

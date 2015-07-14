@@ -4,6 +4,7 @@ from . import views
 
 urlpatterns = patterns(
 	'shifts.views',
-	url(r'^$', views.index, name='index'),
-	url(r'^create_sale/$', 'create_sale'),
+	url(r'^$', 'home'),
+	url(r'^create_sale/$', 'create_sale')
+	# url(r'^create_sale/$', views.create_sale, name='create_sale'),
 )

@@ -7,6 +7,33 @@ $(function() {
 		create_sale();
 	})
 
+    // AJAX for creating shifts
+    function create_sale() {
+        // Submit form data to the create_sale/ endpoint, and wait for either _success_ or _error_.
+        console.log("Create shift is working!") // sanity check
+        $.ajax({
+            url: "create_sale/", // the endpoint
+            type: "POST", // http method
+            data: { the_shift: $('#shift-on-sale').val() }, // data sent with the post request
+
+            // handle a successful response
+            success: function(json) {
+                $('#shift-on-sale').val(''); // Remove the value from the input.
+                console.log(json); // Log the returned json to the console.
+                $("#talk").prepend("<li><strong>"+json.shift_id+"</strong> - <em> "
+                    +json.on_sale+"</em> - <span> "+json.created+"</span> - <a id='delete-post-"
+                    +json.postpk+"'>delete me</a></li>");
+                console.log("success"); // another sanity check
+            },
+            // handle a non-successful response
+            error: function(xhr, errmsg, err) {
+                $('#results').html("<div class='alert-box alert radius' data-alert>An error
+                occurred: "+errmsg+" <a href='#' class='close'>&times;</a></div>"); // Add the error to the DOM.
+                console.log(xhr.status+": "+xhr.responseText); // Provide more info about the error to the console.
+            }
+        });
+    };
+
     // This function gets cookie with a given name
     function getCookie(name) {
         var cookieValue = null;
