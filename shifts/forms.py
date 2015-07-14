@@ -30,3 +30,13 @@ class ShiftAdminForm(forms.ModelForm):
             # date_error = forms.ValidationError(_('Start date should be before end date.'), code='invalid_date')
             
         return self.cleaned_data
+
+class ShiftSaleForm(forms.ModelForm):
+    class Meta:
+        model = Shift
+        fields = ['on_sale']
+        widgets = {
+            'on_sale': forms.CheckboxInput(
+                attrs={'id': 'shift-sale', 'required': True}
+            ),
+        }

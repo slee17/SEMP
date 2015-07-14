@@ -27,6 +27,7 @@ class Shift(models.Model):
         ('POPPA', 'Poppa'),
         ('SOUTH', 'South'),
         ('RYAL', 'Ryal'),
+        ('ATH', 'Ath'),
     )
 
     day_of_the_week = models.CharField(max_length=2, choices=DAYS, blank=True, null=True)
@@ -38,7 +39,7 @@ class Shift(models.Model):
     end_time = models.TimeField(default='14:00:00')
     hours = models.DurationField(editable=False) # DurationField is an interval in PostgreSQL.
     activated = models.BooleanField(verbose_name=('Activate'), default=False)
-    on_sale = models.BooleanField(verbose_name=('On sale'), default=False, editable=False)
+    on_sale = models.BooleanField(verbose_name=('On sale'), default=False) # editable=False?
 
     def __unicode__(self):
         return '%s | %s | %s | %s | %s | %s' % (
@@ -59,11 +60,10 @@ class Shift(models.Model):
         temp_date = datetime(1,1,1,0,0,0)
         self.hours = datetime.combine(temp_date, self.end_time) - datetime.combine(temp_date, self.start_time)
         super(Shift, self).save(*args, **kwargs)
-"""
-    def sell(self, *args, **kwargs):
-        from django
-        seller = self.owner
-"""
+
+#    def sell(self, *args, **kwargs):
+#        seller = self.owner
+
 
     # Go with model methods, not managers.
     # def sell(self):

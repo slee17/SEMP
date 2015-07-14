@@ -1,3 +1,30 @@
-{% load owned_shifts %}
-Hello world.
-{% show_shifts %}
+{% extends "shifts/base.html" %}
+{% block content %}
+<div class="row white">
+    <div class="columns large-12">
+        <form action="/create_sale/" method="POST">
+            {% csrf_token %}
+            <div class="fieldWrapper">
+                {{ form.text }}
+            </div>
+            <input type="submit" value="Post" class="tiny button">
+        </form>
+    </div>
+</div>
+
+<!-- The feed -->
+<div class="row white">
+    <div class="columns large-12">
+        <ul>
+            {% for shift in shifts %}
+                <li>
+                    <strong>{{ shift.department }}</strong> -
+                    <em>{{ shift.day_of_the_week }}</em> -
+                    <span>{{ shift.owner }}</span>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+</div>
+
+{% endblock %}
