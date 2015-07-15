@@ -1,6 +1,6 @@
 $(function() {
 
-	// Change the on_sale status of a shift on submit
+	// Change the sale_status of a shift on submit
 	$('#shift-sale-form').on('submit', function(event){
 		event.preventDefault(); // Prevent the default browser behavior for a form submission.
 		console.log("Form submitted.") // Sanity check.
@@ -14,14 +14,14 @@ $(function() {
         $.ajax({
             url: "create_sale/", // the endpoint
             type: "POST", // http method
-            data: { the_shift: $('#shift-on-sale').val() }, // data sent with the post request
+            data: {  shift: $('#on-sale-status').val() }, // data sent with the post request
 
             // handle a successful response
             success: function(json) {
                 $('#shift-on-sale').val(''); // Remove the value from the input.
                 console.log(json); // Log the returned json to the console.
                 $("#talk").prepend("<li><strong>"+json.shift_id+"</strong> - <em> "
-                    +json.on_sale+"</em> - <span> "+json.created+"</span> - <a id='delete-post-"
+                    +json.sale_status+"</em> - <span> "+json.created+"</span> - <a id='delete-post-"
                     +json.postpk+"'>delete me</a></li>");
                 console.log("success"); // another sanity check
             },

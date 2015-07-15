@@ -38,9 +38,9 @@ class Shift(models.Model):
     start_time = models.TimeField(default='12:00:00')
     end_time = models.TimeField(default='14:00:00')
     hours = models.DurationField(editable=False) # DurationField is an interval in PostgreSQL.
-    activated = models.BooleanField(verbose_name=('Activate'), default=False)
-    on_sale = models.BooleanField(verbose_name=('On sale'), default=False)
-
+    activated = models.BooleanField(verbose_name='Activate', default=False)
+    sale_status = models.BooleanField(verbose_name='Activate sale', default=False)
+    
     def __unicode__(self):
         return '%s | %s | %s | %s | %s | %s' % (
             unicode(self.department),
@@ -54,7 +54,13 @@ class Shift(models.Model):
     # Methods on an instance of Shift (i.e. row-level).
     def assign_owner(self):
         ACTIVATED_USERS = User.objects.get(activated=True)
-        self.owner = models.CharField(max_length, choices=ACTIVATED_USERS)
+        self.owner = models.CharField(choices=ACTIVATED_USERS)
+
+    def activate_sale(self):
+        self.sale_status = True
+
+    def deactivate_sale(self):
+        self.sale_status = False
 
     def save(self, *args, **kwargs): # Overwrite save() to calculate and save the duration of a shift.
         temp_date = datetime(1,1,1,0,0,0)
@@ -64,10 +70,14 @@ class Shift(models.Model):
 #    def sell(self, *args, **kwargs):
 #        seller = self.owner
 
-
-    # Go with model methods, not managers.
-    # def sell(self):
-    # def buy(self):
-
-# class Sale(Shift): # Multi-table inheritance.
-# shift = models.ForeignKey(Shift, related_name='shift_sale')
+class Sale(models.Model):
+    shift = models.ForeignKey(
+        Shift,
+        limit_choices_to={'sale_status': True}, # Only create Sale if sale_status has been set to True.
+        related_name='shift_sale'
+    )
+    on_sale = models.BooleanField(verbose_name=('On sale'), default=False)
+    # ACTIVATED_USERS = User.objects.get(activated=True)
+    # seller = models.CharField(choices=ACTIVATED_USERS)
+    # buyer = models.CharField(choices=ACTIVATED_USERS)
+    sold = models.DateField(blank=True, null=True)

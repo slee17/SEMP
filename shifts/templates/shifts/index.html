@@ -1,4 +1,5 @@
 {% extends "shifts/base.html" %}
+{% load calendar_tags %}
 {% block content %}
 <div class="row white">
     <div class="columns large-12">
@@ -12,10 +13,12 @@
     </div>
 </div>
 
+{% calendar shifts %}
+
 <div class="row white">
     <div class="columns large-12">
         <ul id="shifts">
-            {% for shift in shifts %}
+            {% for shift in all_shifts %} <!--In views.py-->
                 <li>
                     <strong>{{ shift.department }}</strong> -
                     <em>{{ shift.day_of_the_week }}</em> -

@@ -34,9 +34,9 @@ class ShiftAdminForm(forms.ModelForm):
 class ShiftSaleForm(forms.ModelForm):
     class Meta:
         model = Shift
-        fields = ['on_sale']
+        fields = ['sale_status']
         widgets = {
-            'on_sale': forms.CheckboxInput(
+            'sale_status': forms.CheckboxInput(
                 attrs={'id': 'shift-sale', 'required': True}
             ),
         }
