@@ -7,7 +7,7 @@ $(function() {
 		create_sale();
 	})
 
-    // AJAX for creating shifts
+    // AJAX for creating shift sales
     function create_sale() {
         // Submit form data to the create_sale/ endpoint, and wait for either _success_ or _error_.
         console.log("Create shift is working!") // sanity check

@@ -39,7 +39,7 @@ class Shift(models.Model):
     end_time = models.TimeField(default='14:00:00')
     hours = models.DurationField(editable=False) # DurationField is an interval in PostgreSQL.
     activated = models.BooleanField(verbose_name=('Activate'), default=False)
-    on_sale = models.BooleanField(verbose_name=('On sale'), default=False) # editable=False?
+    on_sale = models.BooleanField(verbose_name=('On sale'), default=False)
 
     def __unicode__(self):
         return '%s | %s | %s | %s | %s | %s' % (

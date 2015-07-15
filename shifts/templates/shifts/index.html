@@ -2,7 +2,7 @@
 {% block content %}
 <div class="row white">
     <div class="columns large-12">
-        <form action="/create_sale/" method="POST">
+        <form action="create_sale/" method="POST">
             {% csrf_token %}
             <div class="fieldWrapper">
                 {{ form.text }}
@@ -12,12 +12,9 @@
     </div>
 </div>
 
-hi
-
 <div class="row white">
     <div class="columns large-12">
-        <ul>
-            bye
+        <ul id="shifts">
             {% for shift in shifts %}
                 <li>
                     <strong>{{ shift.department }}</strong> -
@@ -28,5 +25,5 @@ hi
         </ul>
     </div>
 </div>
-
+<script src="static/scripts/main.js"></script>
 {% endblock %}
