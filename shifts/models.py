@@ -1,6 +1,7 @@
 from django.db import models
 from django.conf import settings
 from django.contrib.auth.models import User
+from django.http import HttpResponse
 
 from datetime import date, datetime, time, timedelta # For calculating shift duration.
 
@@ -67,8 +68,27 @@ class Shift(models.Model):
         self.hours = datetime.combine(temp_date, self.end_time) - datetime.combine(temp_date, self.start_time)
         super(Shift, self).save(*args, **kwargs)
 
-#    def sell(self, *args, **kwargs):
-#        seller = self.owner
+    def day_url(year, month, day, has_shift, *args, **kwargs):
+        """
+        Returns a link to the page for the given day or None if there is not to be a day link.
+        has_shift is a boolean telling this method whether there is a shift on the day or not.
+        """
+        return HttpResponse("Hello world.")
+
+    def month_url(year, month, *args, **kwargs):
+        """
+        Returns a link to the page for the given month or None if there is not to be a month link.
+        """
+        return HttpResponse("Hello world.")
+
+    def shifts_by_day(year, month, *args, **kwargs):
+        """
+        Returns a dictionary mapping the day number to a list of shifts on that day.
+        """
+        return {1: Shift.objects.all()}
+
+    #    def sell(self, *args, **kwargs):
+    #        seller = self.owner
 
 class Sale(models.Model):
     shift = models.ForeignKey(

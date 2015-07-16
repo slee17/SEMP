@@ -12,8 +12,10 @@ import json
 def home(request):
 	tmpl_vars = {
 		'all_shifts': Shift.objects.reverse(),
-		'form': ShiftSaleForm()
+		'form': ShiftSaleForm(),
+        'shifts': Shift.objects.get(pk=1),
 	}
+    # return render(request, 'shifts/index.html', tmpl_vars)
 	return render(request, 'shifts/index.html', tmpl_vars)
 
 def create_sale(request):

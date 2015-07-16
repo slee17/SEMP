@@ -1,5 +1,5 @@
 {% extends "shifts/base.html" %}
-{% load calendar_tags %}
+{% load scheduletags %}
 {% block content %}
 <div class="row white">
     <div class="columns large-12">
@@ -12,8 +12,6 @@
         </form>
     </div>
 </div>
-
-{% calendar shifts %}
 
 <div class="row white">
     <div class="columns large-12">
@@ -28,5 +26,8 @@
         </ul>
     </div>
 </div>
+
+{% calendar shifts %}
+
 <script src="static/scripts/main.js"></script>
 {% endblock %}
