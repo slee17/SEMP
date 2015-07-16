@@ -1,0 +1,17 @@
+{% extends "shifts/base.html" %}
+
+{% block content %}
+<div class="row white">
+    <div class="columns large-12">
+        <form action="create_sale/" method="POST">
+            {% csrf_token %}
+            <div class="fieldWrapper">
+                {{ form.text }}
+            </div>
+            <input type="submit" value="Sell Shift" class="tiny button">
+        </form>
+    </div>
+</div>
+
+<script src="static/scripts/main.js"></script>
+{% endblock %}

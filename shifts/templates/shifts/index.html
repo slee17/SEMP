@@ -1,17 +1,6 @@
 {% extends "shifts/base.html" %}
 {% load scheduletags %}
 {% block content %}
-<div class="row white">
-    <div class="columns large-12">
-        <form action="create_sale/" method="POST">
-            {% csrf_token %}
-            <div class="fieldWrapper">
-                {{ form.text }}
-            </div>
-            <input type="submit" value="Sell Shift" class="tiny button">
-        </form>
-    </div>
-</div>
 
 <div class="row white">
     <div class="columns large-12">
@@ -20,7 +9,8 @@
                 <li>
                     <strong>{{ shift.department }}</strong> -
                     <em>{{ shift.day_of_the_week }}</em> -
-                    <span>{{ shift.owner }}</span>
+                    <span>{{ shift.owner }}</span> -
+                    <em>{{ shift.pk }}<em>
                 </li>
             {% endfor %}
         </ul>

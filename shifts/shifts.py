@@ -1,3 +1,7 @@
+"""
+Author: Rachel Lee
+"""
+
 from django.db import models
 from django.conf import settings
 from django.contrib.auth.models import User
@@ -85,7 +89,7 @@ class Shift(models.Model):
         """
         Returns a dictionary mapping the day number to a list of shifts on that day.
         """
-        return {1: Shift.objects.all()}
+        return {1: [Shift.objects.get(pk=1)]}
 
     #    def sell(self, *args, **kwargs):
     #        seller = self.owner
