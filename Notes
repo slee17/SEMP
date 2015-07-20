@@ -2,6 +2,8 @@ Supported environment:
 Python 2.7
 Django 1.8.2
 
+Installation: pip install -r requirements.txt
+
 If another developer were to continue with this project, Python environment must be set to these versions. Use of virtualenv and virtualenvwrapper is strongly recommended.
 
 Apps:
