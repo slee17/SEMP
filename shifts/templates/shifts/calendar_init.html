@@ -1,6 +1,21 @@
 <script type="text/javascript">
     $(document).ready(function() {
-        // page is now ready, initialize the calendar...
-        $('#calendar').fullCalendar({{ calendar_config_options }});
+        
+        // Page is now ready, initialize the calendar.
+        // calendar_config_options = { weekends: false, editable:false }
+        // $('#calendar').fullCalendar({{ calendar_config_options }});
+        
+        $('#calendar').fullCalendar({
+        	header: {
+        		left: 'prev, next today',
+        		center: 'title',
+        		right: 'month, agendaWeek, agendaDay'
+        	}
+        	// options and callbacks
+        	weekends: false,
+        	editable: false,
+        	defaultView = 'basicWeek',
+        });
+		
     });
 </script>

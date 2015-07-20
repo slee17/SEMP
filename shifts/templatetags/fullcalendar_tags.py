@@ -4,7 +4,6 @@ from ..fullcalendar import css_url, print_css_url, javascript_url, jquery_url, j
 
 register = template.Library()
 
-
 @register.inclusion_tag("shifts/calendar.html")
 def calendar():
     return {}

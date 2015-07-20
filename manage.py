@@ -1,7 +1,5 @@
 #!/usr/bin/env PYTHONWARNINGS=ignore python
-import os
-import sys
-import django
+import os, sys, django
 
 if __name__ == "__main__":
     os.environ.setdefault("DJANGO_SETTINGS_MODULE", "SEMP.settings")

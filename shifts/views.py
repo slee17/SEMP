@@ -21,21 +21,20 @@ def home(request):
 	return render(request, 'shifts/index.html', tmpl_vars)
 
 def full_calendar(request):
-    return HttpResponse('shifts/full_calendar.html')
-#    tmpl_vars
-#    return render(request, 'shifts/full_calendar.html', tmpl_vars)
+    return render(request, 'shifts/fullcalendar_index.html')
 
 def view_shifts(request):
     activated_shifts = Shift.objects.filter(activated=True)
     shifts = []
     for shift in activated_shifts:
-        shifts.append({'id': shift.id, 'department': shift.department, 'start_date': shift.start_date})
-    # return HttpResponse(json.dumps(shifts, cls=DjangoJSONEncoder), mimetype='application/json')
-    # return JsonResponse(shifts, safe=False)
-    return render(request, 'shifts/full_calendar.html',
-        {'shifts': json.dumps(shifts)})
+        shifts.append({'id': shift.id, 'department': shift.department, 'start_date': str(shift.start_date)})
+    # return render(request, 'shifts/full_calendar.html',
+    #    {'shifts': json.dumps(shifts)})
+    calendar_config_options = {'defaultView': 'agendaWeek',
+                               'editable': 'False'}
+    return render(request, 'shifts/full_calendar.html', {'calendar_config_options': calendar_config_options})
 
-def create_sale(request):
+def create_sale(request): # inactive for now
     if request.method == 'POST':
     	shift_sale_status = request.POST.get('the_shift')
     	response_data = {}
