@@ -1,0 +1,1073 @@
+/* BEGIN GENERAL CSS */
+a {
+	color: #000000;
+	font-size: 11px;
+	border: none;
+	cursor: pointer;
+}
+
+a:link {
+	text-decoration: none;
+}
+
+a:visited {
+	color: #000000;
+	text-decoration: none;
+}
+
+a:hover {
+	color: #880000;
+	text-decoration: none;
+}
+
+a:visited:hover {
+	color: #880000;
+	text-decoration: none;
+}
+
+body {
+	background-color: #999999;
+	margin: 0px 0px 0px 0px;
+	padding: 0px 0px 0px 0px;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 11px;
+}
+
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+img {
+	border: 0;
+}
+
+#content {
+	background-color: #fbfde8;
+	width: 99.5%;
+	margin: 0px 0px 15px 0px;
+	padding: 0px 0px 10px 0px;
+	font-size: 12px;
+	height: 100%;
+}
+
+#copyright {
+	color: #CCCCCC;
+	font-size: 11px;
+}
+
+#copyright a {
+	color: #CCCCCC;
+}
+
+#copyright a:link {
+	color: #CCCCCC;
+	text-decoration: underline;
+}
+
+#copyright a:hover {
+	text-decoration: none;
+}
+
+#copyright a:visited {
+	color: #CCCCCC;
+}
+
+#depName {
+	font-variant: small-caps;
+	font-size: x-large;
+	font-weight: normal;
+	color: #880000;
+	padding: 15px 0px 2px 20px;
+	margin: 0px 30px 0px 10px;
+	text-align: left;
+	border-bottom: 1px #999999 solid;
+}
+
+#catName {
+	font-variant: small-caps;
+	font-size: x-large;
+	font-weight: normal;
+	color: #880000;
+	padding: 15px 0px 2px 20px;
+	margin: 0px 30px 0px 10px;
+	text-align: left;
+	border-bottom: 1px #999999 solid;
+}
+
+#gateCat {
+	width: 59%;
+	height: 100%;
+}
+
+#gateMain {
+	width: 40%;
+	height: 100%;
+}
+
+ul.scroll {
+	height: 200px;
+	overflow: auto;
+	border: 1px solid #666;
+	background-color: #ccc;
+	padding: 8px;
+}
+
+#gateMainOpts {
+	margin-left: 15px;
+}
+
+.gContent {
+	width: 100%;
+	height: 100%;
+	margin: 0 0 15px;
+}
+
+.gContent tr {
+	height: 100%;
+	width: 100%;
+}
+
+.gContent td {
+	height: 100% margin:    2px;
+	background: #FBFDE8;
+	padding: 0px 0px 20px 0px;
+	vertical-align: top;
+}
+
+.functionBox.table, .div, .td, .tr{
+	height: 100% margin:    2px;
+	background-color: #FBFDE8;
+	vertical-align: top;
+	background: #FBFDE8;
+}
+
+#header {
+	font-size: 12px;
+}
+
+#homeRight {
+	margin-left: 15px;
+	border-top: 1px #999999 solid;
+	/*border-left: 1px #999999 solid;*/
+	border-bottom: 1px #999999 solid;
+}
+
+#labStatusBox {
+	float: right;
+	border-left: 1px #999999 solid;
+	border-bottom: 1px #999999 solid;
+	/*-moz-border-radius-bottomLeft: 8px;*/
+	width: 180px;
+	padding: 5px 5px 5px 5px;
+	z-index: 2;
+}
+
+#linksEXP {
+	color: #000000;
+}
+
+#linksEXP a {
+	text-decoration: none;
+	padding: 0px 0px 2px 10px;
+	margin: 0px 0px 2px 10px;
+}
+
+#linksRight {
+	float: right;
+	margin-right: 10px;
+	padding-top: 0px;
+	color: #880000;
+	font-size: 12px;
+}
+
+#logo {
+	position: relative;
+	width: 100%;
+	height: 300px;
+	background: url(/Images/Logos/StatHeader.jpg) top no-repeat;
+	text-align: center;
+}
+
+#menubar {
+	background-color: #f4f2d6;
+	width: 100%;
+	padding: 4px 0px 4px 0px;
+	margin: 0px 0px 3px 0px;
+	font-variant: small-caps;
+}
+
+#message {
+	background-color: #FFFFFF;
+	width: 100%;
+	font-size: 16px;
+}
+
+#namesList {
+	text-align: center;
+	margin: 20px 0px;
+}
+
+#namesList td {
+	border: 1px #999999 solid;
+}
+
+#noscr {
+	background-color: #FFFFFF;
+	width: 100%;
+	font-size: 16px;
+}
+
+#optionsDialog {
+	height: 130px;
+	width: 100%;
+	align: center;
+	position: fixed;
+	z-index: 5;
+	background-color: #FBFDE8;
+	display: none;
+	margin: 0px 0px 0px 0px;
+	overflow: hidden;
+}
+
+#optionsBorder {
+	border-top: 6px #990000 solid;
+	border-left: 6px #990000 solid;
+	border-right: 6px #840000 solid;
+	border-bottom: 6px #840000 solid;
+}
+
+#optionsBorderTable {
+	height: 99px;
+	width: 100%
+}
+
+#optionsContent {
+	text-align: center;
+	margin: 0px 5px;
+}
+
+#optionsHeadings {
+	font-size: 14px;
+	text-decoration: underline;
+	text-align: center;
+}
+
+#optionsX {
+	float: right;
+	vertical-align: top;
+}
+
+.optionsLabel {
+	text-align: right;
+	font-weight: bold;
+	padding: 1px 4px 1px 10px;
+}
+
+.optionsAction {
+	text-align: left;
+	padding: 1px 10px 1px 4px;
+}
+
+.optionsValue {
+	text-align: left;
+	padding: 1px 10px 1px 4px;
+}
+
+#optionsTitle {
+	text-align: center;
+	font-size: 16px;
+	font-weight: bold;
+}
+
+#optionsTable {
+	text-align: left;
+	float: left;
+}
+
+#overlay {
+	background-color: #000000;
+	width: 100%;
+	height: 100%;
+	-moz-opacity: .7;
+	filter: alpha(opacity =     70);
+	position: fixed;
+	left: 0px;
+	top: 0px;
+	z-index: 10;
+	display: none;
+}
+
+#publicContent {
+	font-size: 12px;
+	margin: 20px 30px 20px 10px;
+}
+
+#scheduleLink {
+	padding: 5px 5px 0px 8px;
+	margin: 12px 9px 5px 9px;
+	width: 80%;
+	height: 2em;
+	border: 2px #990000 solid;
+	background: #F4F2D6;
+	cursor: pointer;
+	text-align: center;
+	font-size: 1.5em;
+	font-variant: small-caps;
+	line-height: 1.4em;
+}
+
+#siteInfo {
+	position: absolute;
+	z-index: 11;
+	background-color: #f4f2d6;
+	color: #666666;
+	padding: 12px 12px 20px 12px;
+	border: 2px #880000 solid;
+	width: 300px;
+	height: 200px;
+	display: none;
+	/*-moz-border-radius:5px;*/
+}
+
+#title {
+	color: #000000;
+	font-size: 14px;
+	font-weight: 600;
+	padding: 10px 0px 0px 0px;
+	margin: 0px 0px 0px 0px;
+	display: block;
+	clear: right;
+	font-variant: small-caps;
+}
+
+html>body #title {
+	font-size: large;
+	padding: 10px 0px 5px 0px;
+	font-weight: normal;
+}
+
+#title a {
+	color: #880000;
+	padding: 5px 10px 5px 10px;
+}
+
+#title a:link {
+	color: #880000;
+}
+
+#title a:visited {
+	color: #880000;
+}
+
+#title a:hover {
+	text-decoration: underline;
+	padding: 5px 10px 5px 10px;
+}
+
+#totalWrapper {
+	width: 100%;
+	font-size: 12px;
+}
+
+.gateBox {
+	float: right;
+	border: 1px #990000 solid;
+	width: 80%;
+	background: #F4F2D6;
+	padding: 5px 8px 5px 5px;
+	margin: 10px 10px 0px 0px;
+	z-index: 2;
+}
+
+.gateBox ul {
+	list-style-type: none;
+	padding: 0px 0px 0px 0px;
+	margin: 5px 0px 2px 0px;
+}
+
+.gateBox li {
+	margin: 10px 0px 0px 0px;
+}
+
+.gateBoxTitle {
+	font-size: 16px;
+	font-variant: small-caps;
+	border-bottom: 1px solid #999999;
+	display: block;
+	font-variant: small-caps;
+	margin-bottom: 2px;
+	padding: 3px 0px;
+	text-align: left;
+	width: 100%;
+}
+
+.emphasis {
+	color: #880000;
+	font-size: 22px;
+	font-weight: 600;
+}
+
+html>body .emphasis {
+	font-size: x-large;
+	font-weight: normal;
+}
+
+.gateOptsList {
+	margin: 5px 0px 10px 0px;
+	list-style-type: square;
+}
+
+.gCatName {
+	font-variant: small-caps;
+	color: #660000;
+	font-size: 10px;
+}
+
+.gDateInfo {
+	font-weight: 600;
+	font-size: 10px;
+}
+
+.gTimeInfo {
+	font-size: 10px;
+}
+
+.homeLink {
+	border: 1px #fbfde8 solid;
+	/*-moz-border-radius:5px;*/
+	padding: 1px 3px 1px 8px;
+	margin: 1px 0px 2px 5px;
+	text-align: left;
+	display: list-item;
+	list-style-type: none;
+	font-size: 11px;
+	width: 300px;
+}
+
+html>body .homeLink {
+	width: 300px;
+}
+
+.homeLink:hover {
+	border-left: 1px #880000 solid;
+	/*border-right: 1px #880000 solid;*/
+	color: #880000;
+	/*font-weight:bold;*/
+}
+
+.homeParentLink {
+	cursor: default;
+	margin: 5px 5px 5px 8px;
+	padding: 3px 0px 3px 0px;
+	text-align: left;
+	display: list-item;
+	list-style-type: none;
+	font-size: 12px;
+	width: 200px;
+	font-weight: bold;
+}
+
+.labStatus {
+	color: #880000;
+	font-size: 10px;
+}
+
+.listByTitle {
+	border-bottom: 1px solid #999999;
+	color: #880000;
+	display: block;
+	font-size: 12px;
+	font-variant: small-caps;
+	font-weight: 600;
+	margin-bottom: 2px;
+	padding: 3px 5px;
+	text-align: left;
+	width: 125px;
+}
+
+.newsTitle {
+	font-weight: 600;
+}
+
+.newsFooter {
+	font-variant: small-caps;
+	font-size: 10px;
+}
+
+.schOption {
+	color: #000000;
+	cursor: pointer;
+	border-left: 1px #990000 solid;
+	padding: 0px 1px;
+	margin-left: 4px;
+}
+
+.schOption:hover {
+	color: #990000;
+	border-left: 2px #990000 solid;
+	margin-left: 3px;
+}
+
+.smallMaroonButton {
+	background-color: #880000;
+	color: #FFFFFF;
+	border: 1px #880000 outset;
+	padding: 1px 3px 1px 3px;
+	cursor: pointer;
+	font-size: 10px;
+	font-variant: normal;
+	-moz-border-radius: 5px;
+}
+
+html>body .smallMaroonButton {
+	padding: 1px 5px 1px 5px;
+}
+
+.x {
+	cursor: default;
+	color: #000000;
+	padding: 1px 3px 2px 3px;
+	border-right: 1px #666666 solid;
+	border-bottom: 1px #666666 solid;
+	border-top: 1px #CCCCCC solid;
+	border-left: 1px #CCCCCC solid;
+	text-decoration: none;
+}
+
+.x:hover {
+	border-right: 1px #666666 solid;
+	border-bottom: 1px #666666 solid;
+	border-top: 1px #999999 solid;
+	border-left: 1px #999999 solid;
+}
+
+.x:active {
+	border-right: 1px #CCCCCC solid;
+	border-bottom: 1px #CCCCCC solid;
+	border-top: 1px #666666 solid;
+	border-left: 1px #666666 solid;
+	outline: none;
+	font-weight: bold;
+}
+
+/* END GENERAL CSS */
+
+/* Map Divs */
+#overlay {
+	background-color: #000000;
+	width: 100%;
+	height: 100%;
+	-moz-opacity: .7;
+	filter: alpha(opacity =     70);
+	position: absolute;
+	left: 0px;
+	top: 0px;
+	z-index: 10;
+	display: none;
+}
+
+#closeButton {
+	color: #FFFFFF;
+	text-decoration: none;
+	display: inline;
+	margin-left: 25px;
+}
+
+#poppaLastUpdated {
+	color: #FFFFFF;
+	display: inline;
+	font-style: italic;
+	margin-left: 25px;
+	font-size: 12px;
+}
+
+#ktcLastUpdated {
+	color: #FFFFFF;
+	display: inline;
+	font-style: italic;
+	margin-left: 25px;
+	font-size: 12px;
+}
+
+#southLastUpdated {
+	color: #FFFFFF;
+	display: inline;
+	font-style: italic;
+	margin-left: 25px;
+	font-size: 12px;
+}
+
+#closeButton a {
+	color: #FFFFFF;
+	text-decoration: none;
+}
+
+#closeButton a:link {
+	text-decoration: none;
+}
+
+#closeButton a:hover {
+	text-decoration: none;
+}
+
+#closeButton a:visited {
+	color: #FFFFFF;
+}
+
+.mapHeader {
+	color: #FFFFFF;
+	display: inline;
+	text-align: center;
+	font-variant: small-caps;
+}
+
+#poppaMap {
+	display: none;
+	z-index: 25;
+	position: absolute;
+	top: 2%;
+	vertical-align: middle;
+}
+
+html>body #poppaMap {
+	position: fixed;
+}
+
+#ktcMap {
+	display: none;
+	z-index: 25;
+	position: absolute;
+	top: 2%;
+	vertical-align: middle;
+}
+
+html>body #ktcMap {
+	position: fixed;
+}
+
+#southMap {
+	display: none;
+	z-index: 25;
+	position: absolute;
+	top: 2%;
+	vertical-align: middle;
+}
+
+html>body #southMap {
+	position: fixed;
+}
+
+#rrlMap {
+	display: none;
+	z-index: 25;
+	position: absolute;
+	top: 2%;
+	vertical-align: middle;
+}
+
+html>body #rrlMap {
+	position: fixed;
+}
+
+.spaceHolder {
+	width: 85px;
+	height: 70px;
+}
+
+.station {
+	width: 85px;
+	height: 70px;
+	border: 1px #999999 solid;
+	background-color: #E5E5E5;
+	text-align: center;
+	font-size: 12px;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+}
+
+.emptydeskHolder {
+	width: 85px;
+	height: 70px;
+	border: 1px #999999 solid;
+	background-color: #E5E5E5;
+	text-align: center;
+	font-size: 12px;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+}
+
+/* BEGIN SCHEDULE CSS */
+#bottomMenu {
+	width: 100%;
+	margin: 0px 0px 0px 0px;
+}
+
+#dayNav {
+	width: 10%;
+	height: 100%;
+	text-align: center;
+	padding: 1px 0px 1px 1px;
+}
+
+#dayNav a {
+	color: #660000;
+	cursor: pointer;
+}
+
+#dayNav2 {
+	width: 10%;
+	height: 100%;
+	text-align: center;
+}
+
+#dayNav2 a {
+	color: #660000;
+	cursor: pointer;
+}
+
+#depSelector {
+	float: left;
+	border: 2px #666666 solid;
+}
+
+#schedule {
+	overflow: visible;
+	margin: 0px 20px;
+	padding: 20px 0px 0px 0px;
+}
+
+#shiftOptions {
+	width: 80%;
+	height: 1em;
+	background-color: #f4f2d6;
+	border: 1px #999999 solid;
+}
+
+#tabs {
+	width: 99%;
+	height: 2.1em;
+	margin: 0px 0px 0px 0px;
+	padding: 0px 2px 2px 0px;
+}
+
+#timeMarks {
+	width: 80%;
+	height: 100%;
+	background-color: #f4f2d6;
+	border: 1px #999999 solid;
+	padding: 1px 0px 1px 0px;
+	margin: 0px;
+}
+
+#topMenu {
+	width: 100%;
+	height: 1.5em;
+	margin: 0px 0px 0px 0px;
+}
+
+#weekNav {
+	width: 10%;
+	height: 100%;
+	text-align: center;
+}
+
+#weekNav a {
+	color: #660000;
+	cursor: pointer;
+}
+
+#weekNav2 {
+	width: 10%;
+	height: 100%;
+	text-align: center;
+}
+
+#weekNav2 a {
+	color: #660000;
+	cursor: pointer;
+}
+
+.leftCol {
+	width: 10%;
+	height: 100%;
+	border: 1px #999999 solid;
+	background-color: #f4f2d6;
+}
+
+.leftTable {
+	width: 100%;
+	height: 100%;
+}
+
+.locNameWrap {
+	width: 60%;
+	height: 100%;
+}
+
+.locName {
+	height: 2em;
+	vertical-align: middle;
+}
+
+.locShifts {
+	
+}
+
+.mainCol {
+	width: 80%;
+	height: 100%;
+	border: 1px #999999 solid;
+	background-color: #E5E5E5;
+}
+
+.rightCol {
+	width: 10%;
+	height: 100%;
+	border: 1px #999999 solid;
+	background-color: #f4f2d6;
+}
+
+.rowDate {
+	display: block;
+	height: 100%;
+	text-align: left;
+	padding-left: 5px;
+	font-size: 14px;
+	font-weight: bold;
+}
+
+.rowDay {
+	width: 40%;
+	height: 100%;
+	text-align: left;
+	padding-left: 5px;
+	font-size: 14px;
+	font-weight: bold;
+	vertical-align: middle;
+}
+
+.catTab {
+	float: left;
+	height: 1.2em;
+	width: 7em;
+	margin: 0px 0px 0px 8px;
+	padding: 3px;
+	font-size: 16px;
+	background-color: #CCCCCC;
+	border-top: 2px #996666 solid;
+	border-left: 2px #996666 solid;
+	border-right: 2px #996666 solid;
+	cursor: pointer;
+}
+
+.catTabActive {
+	float: left;
+	height: 1.2em;
+	width: 7em;
+	margin: 0px 0px 0px 8px;
+	padding: 3px;
+	font-size: 16px;
+	background-color: #fbfde8;
+	border-top: 2px #990000 solid;
+	border-left: 2px #990000 solid;
+	border-right: 2px #990000 solid;
+	cursor: default;
+}
+
+.locArea {
+	width: 100%;
+}
+
+.locArea:hover {
+	background: #CBCBCB;
+}
+
+.locArea td {
+	margin-right: -1px;
+	padding: 0px;
+}
+
+.locShifts {
+	width: 100%;
+}
+/*Coloring Of The Shifts*/
+.shiftNormal {
+	padding: 3px;
+	height: 1.2em;
+	background-color: #CCCCFF;
+	border-top: 1px #DDDDFF solid;
+	border-left: 1px #DDDDFF solid;
+	border-right: 1px #6666CC solid;
+	border-bottom: 1px #6666CC solid;
+	cursor: pointer;
+	overflow: hidden;
+}
+
+.shiftNormal:active {
+	border-top: 1px #6666CC solid;
+	border-left: 1px #6666CC solid;
+	border-right: 1px #DDDDFF solid;
+	border-bottom: 1px #DDDDFF solid;
+}
+
+.shiftInactive {
+	padding: 3px;
+	height: 1.2em;
+	background-color: #999999;
+	border-top: 1px #CCCCCC solid;
+	border-left: 1px #CCCCCC solid;
+	border-right: 1px #333333 solid;
+	border-bottom: 1px #333333 solid;
+	cursor: pointer;
+	overflow: hidden;
+}
+
+.shiftInactive:active {
+	border-top: 1px #333333 solid;
+	border-left: 1px #333333 solid;
+	border-right: 1px #CCCCCC solid;
+	border-bottom: 1px #CCCCCC solid;
+}
+
+.shiftPSale {
+	padding: 3px;
+	height: 1.2em;
+	background-color: #CCAAFF;
+	border-top: 1px #DDBBFF solid;
+	border-left: 1px #DDBBFF solid;
+	border-right: 1px #6644CC solid;
+	border-bottom: 1px #6644CC solid;
+	cursor: pointer;
+	overflow: hidden;
+}
+
+.shiftPSale:active {
+	border-top: 1px #6644CC solid;
+	border-left: 1px #6644CC solid;
+	border-right: 1px #DDBBFF solid;
+	border-bottom: 1px #DDBBFF solid;
+}
+
+.shiftSale {
+	padding: 3px;
+	height: 1.2em;
+	background-color: #00c957;
+	border-top: 1px #AADDAA solid;
+	border-left: 1px #AADDAA solid;
+	border-right: 1px #009933 solid;
+	border-bottom: 1px #009933 solid;
+	cursor: pointer;
+	overflow: hidden;
+}
+
+.shiftSale:active {
+	border-top: 1px #009933 solid;
+	border-left: 1px #009933 solid;
+	border-right: 1px #AADDAA solid;
+	border-bottom: 1px #AADDAA solid;
+}
+
+.shiftSPSale { /* FOR SHIFT THAT IS BOTH SOLD AND PSOLD*/
+	padding: 3px;
+	height: 1.2em;
+	background-color: #ff9955;
+	border-top: 1px #FFEECC solid;
+	border-left: 1px #FFEECC solid;
+	border-right: 1px #CC6644 solid;
+	border-bottom: 1px #CC6644 solid;
+	cursor: pointer;
+	overflow: hidden;
+}
+
+.shiftSPSale:active {
+	border-top: 1px #CC6644 solid;
+	border-left: 1px #CC6644 solid;
+	border-right: 1px #FFEECC solid;
+	border-bottom: 1px #FFEECC solid;
+}
+
+.spacer {
+	
+}
+
+.timeMouseTracker {
+	position: absolute;
+	height: 5000px;
+	width: 4px;
+	top: 0;
+}
+
+.timeMouseTracker:hover {
+	background: #990000;
+}
+
+.timeStamp {
+	overflow: visible;
+	padding: 0px;
+	margin: 0px;
+	border-left: 0px #999999 solid;
+}
+
+.totalRow {
+	margin: 0px 0px 0px 0px;
+	padding: 0px 0px 0px 0px;
+	width: 100%;
+	border: 1px #999999 solid;
+}
+
+/* END SCHEDULE CSS */
+
+/* BEGIN LTACheckIn CSS */
+#LabNameCheck {
+	font-size: 45px;
+	font-style: italic;
+	letter-spacing: 1em;
+	font-family: 'Times New Roman';
+}
+
+#LTAContainer #CheckIn {
+	font-size: 30px;
+	font-family: 'Times New Roman';
+	background-color: #FDFCDC;
+}
+
+#LTAContainer {
+	width: 95%%;
+	height: 100%;
+}
+
+#LTATextArea {
+	padding: 5px;
+	border: 3px solid #000000;
+}
+
+#LTACheckInTable {
+	width: 95%%;
+	height: 100%;
+}
+
+#LTASelect {
+	width: 125px;
+	height: 30px;
+	color: black;
+	font: 12px/21px arial, sans-serif;
+	overflow: hidden;
+	border: 3px solid #000;
+}
+
+.LTACheckInForm {
+	border: 3px solid #000;
+	padding: 5px;
+	width: 125px;
+}
+
+#LTACheckInSubmitButton {
+	border: none;
+	background: #000;
+	color: #fff;
+	font-size: 15px;
+	font-family: 'Times New Roman';
+	cursor: pointer;
+	padding: 8px 13px;
+	font-weight: bold;
+}
+/* END LTACheckIn CSS */

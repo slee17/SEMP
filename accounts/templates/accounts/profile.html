@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% load staticfiles %}
+
+{% block title %}{{ user_name }}{% endblock %}
+
+{% block body_block %}
+	<h1>{{ user_name }}</h1>
+	{% if active %}
+		{% if shifts %}
+			<ul>
+				{% for shift in shifts %}
+				<li><a href="{{ shift.url }}">{{ shift.title }}</a></li>
+				{% endfor %}
+				</ul>
+			{% else %}
+				<strong>No owned shifts.</strong>
+					{% endif %}
+		{% endif %}
+{% endblock %}

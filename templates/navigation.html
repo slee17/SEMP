@@ -1,0 +1,38 @@
+{% load base_extras %}
+{% load staticfiles %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}" />
+
+<div id="topbar">
+	<div class="navbar">
+		<div class="navbar-side navbar-left"></div>
+		<div class="navbar-content">
+
+		<li><a class="{% navactive request 'admin:index' %}"
+			href="{% url 'admin:index' %}">Admin</a></li>
+
+		{% if user.is_authenticated %}
+			<li><a class="{% navactive request 'home' %}"
+				href="{% url 'home' %}">Home</a></li>
+
+			<li><a class="{% navactive request 'shifts:view_shifts' %}"
+				href="{% url 'shifts:view_shifts' %}">View Shifts</a></li>
+
+			<li><a class="{% navactive request 'profile' %}"
+				href="{% url 'profile' %}">Profile</a></li>
+
+			<li><a href="{% url 'logout' %}">Logout</a></li>
+
+		{% else %}
+			<li><a class="{% navactive request 'login' %}"
+				href="{% url 'login' %}">Login</a></li>
+			<li><a class="{% navactive request 'registration_register' %}"
+				href="{% url 'registration_register' %}"><b>Sign up</b></a></li>
+			<li><a class="{% navactive request 'home' %}"
+				href="{% url 'home' %}">Home</a></li>
+			<br>
+
+		{% endif %}
+		</div>
+		<div class="navbar-side navbar-right"></div>
+	</div>
+</div>
