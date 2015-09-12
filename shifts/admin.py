@@ -6,13 +6,21 @@ from django.shortcuts import render, render_to_response
 from django.template import RequestContext
 from django import forms
 
-from .models import Shift
+from .models import Shift, Sale
 from .forms import ShiftAdminForm
 
 class ShiftAdmin(admin.ModelAdmin):
 	form = ShiftAdminForm
-	list_display = ('department', 'location', 'day_of_the_week', 'start_time', 'end_time', 'hours', 'owner')
+	list_display = ('department', 'location', 'day_of_the_week', 'start_time', 'end_time',
+					'hours', 'owner', 'title', 'activated') # 'start_date', 'end_date', 'get_seller'
 	actions = ['activate', 'deactivate', 'assign_owner']
+
+	"""
+	def get_seller(self, obj):
+		return obj.sale.date
+	get_seller.short_description = 'Seller'
+	get_seller.admin_order_field = 'sale__seller'
+	"""
 
 	def activate(self, request, queryset):
 		queryset.update(activated=True)
@@ -54,4 +62,10 @@ class ShiftAdmin(admin.ModelAdmin):
 		return render_to_response('admin/assign_owner.html', {'shifts': queryset, 'owner_form': form},
 			context_instance=RequestContext(request))
 
+class SaleAdmin(admin.ModelAdmin):
+	list_display = ('shift', 'date', 'datetime_sold', 'datetime_bought', 'seller', 'buyer')
+
 admin.site.register(Shift, ShiftAdmin)
+admin.site.register(Sale, SaleAdmin) # Make managing sales available on the admin site - sometimes
+						  # the admin would want to create and conclude sales (e.g. when the shift-holder
+						  # or the buyer has no access to the site).

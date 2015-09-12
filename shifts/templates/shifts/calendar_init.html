@@ -1,21 +1,121 @@
-<script type="text/javascript">
-    $(document).ready(function() {
-        
-        // Page is now ready, initialize the calendar.
-        // calendar_config_options = { weekends: false, editable:false }
-        // $('#calendar').fullCalendar({{ calendar_config_options }});
-        
-        $('#calendar').fullCalendar({
-        	header: {
-        		left: 'prev, next today',
-        		center: 'title',
-        		right: 'month, agendaWeek, agendaDay'
-        	}
-        	// options and callbacks
-        	weekends: false,
-        	editable: false,
-        	defaultView = 'basicWeek',
+{% extends "base.html" %}
+{% block title %} Shifts {% endblock %}
+{% block extra_head %}
+    <link rel='stylesheet' type='text/css' href='/static/fullcalendar/2.3.2/fullcalendar.css' />
+    <link href='/static/fullcalendar/2.3.2/fullcalendar.print.css' rel='stylesheet' media='print' />
+    <script type='text/javascript' src='//cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment.min.js'></script>
+    <script src='//code.jquery.com/jquery-2.1.3.min.js'></script>
+    <script src='//code.jquery.com/ui/1.10.4/jquery-ui.js'></script>
+    <script type='text/javascript' src='/static/fullcalendar/2.3.2/fullcalendar.js'></script> <!--Use the minified version (min.js) in production-->
+
+    <!--Using Bootstrap-->
+    <!--Latest compiled and minified CSS-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <!--Optional theme-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+    <!--Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function() { // Page is now ready.
+            // Initialize the calendar.
+            $('#calendar').fullCalendar({
+                header: {{ header|safe }},
+                weekends: {{ show_weekends }},
+                editable: {{ editable }},
+                allDaySlot: {{ show_all_day }},
+                allDayDefault: {{ all_day_default }},
+                defaultView: '{{ default_view }}',
+                firstDay: {{ first_day }},
+                minTime: '{{ start_time }}',
+                maxTime: '{{ end_time }}',
+                nextDayThreshold: '{{ end_time }}',
+                eventSources: {{ event_sources|safe }},
+                eventRender: function(event, element) {
+                    // Do not display start time for shifts.
+                    $(element).find(".fc-time").remove();
+                    // If the shift is on sale, inverse its color.
+                    if(event.sale_status == 'True') {
+                        element.css('background-color', 'white')
+                        if(event.title[0] == 'P') {
+                             element.css('color', '981A31')}
+                        if(event.title[0] == 'S') {
+                            element.css('color', '9E7C0A')}
+                        if(event.title[0] == 'R') {
+                            element.css('color', '00546B')}
+                    }
+                },
+                eventAfterRender: function(event, element, view) {
+                    $(element).css('width','41.5px');
+                },
+                eventClick: function(event, jsEvent, view) {
+                    // $('#fullCalModal #shiftId').val(event.id);
+                    $('#shiftIdField').val(event.id); // Populate the hidden shiftIdField.
+                    $('#shiftDateField').val(event.start); // Populate the hidden shiftDateField.
+                    $('#calendar').fullCalendar('updateEvent', event);
+                    $('#modalTitle').html(event.title);
+                    $('#modalBody').html(event.description);
+                    // $('#eventUrl').attr('href',event.url);
+                    $('#fullCalModal').modal();
+                    // $(function(){
+                    //    $('#buyForm').on('submit', function(e){
+                    //        e.preventDefault();
+                    //        $.post('http://www.somewhere.com/path/to/post', // What would normally
+                                                                            // be the 'action' form.
+                                                                            // That is where it will POST to.
+                    //            $('#myForm').serialize(), // takes all the fields in the form
+                                                          // (none yet) and turns them into a JSON
+                                                          // object to send as the POST data
+                    //            function(data, status, xhr){
+                                    // do something here with response;
+                    //            })
+                    //    })
+                    // })
+                }
+            });
         });
-		
-    });
-</script>
+    </script>
+
+    <style type='text/css'>
+    #calendar {
+        margin-top: 40px;
+        text-align: center;
+        font-size: 14px;
+        font-family: "Lucida Grande", Helvetica, Arial, Verdana, sans-serif;
+        width: 1000px;
+        margin: 0 auto;
+        font-size: 14px;
+    }
+    </style>
+
+    <!-- Modal HTML -->
+    <div id="fullCalModal" class="modal fade">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <form class="fullCalForm" method="post" action="{% url 'shifts:sales' %}">
+                    {% csrf_token %}
+                    <input type="hidden" name="shift_id" id="shiftIdField"/> <!--For passing in the shift ID as a hidden field-->
+                    <input type="hidden" name="date" id="shiftDateField"/>
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span>
+                        <span class="sr-only">close</span></button>
+                        <h4 id="modalTitle" class="modal-title"></h4>
+                    </div>
+                    <div id="modalBody" class="modal-body"></div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary" name="sell">Sell</button>
+                        <button type="submit" class="btn btn-primary" name="buy">Buy</button>
+                        <!--<button class="btn btn-primary"><a id="eventUrl" target="_blank">Event Page</a></button>-->
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div id="calendar"></div>
+{% endblock %}
+
+{% block content %}
+<div id="calendar"></div>
+{% endblock %}

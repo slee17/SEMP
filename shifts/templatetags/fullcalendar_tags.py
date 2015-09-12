@@ -43,6 +43,9 @@ def fullcalendar_print_css():
     return "<link href='%s' rel='stylesheet' media='print' />" % url
 
 @register.simple_tag
+def fullcalendar_moment_url():
+
+@register.simple_tag
 def fullcalendar_jquery():
     url = fullcalendar_jquery_url()
     return "<script src='%s'></script>" % url
