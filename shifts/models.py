@@ -112,10 +112,12 @@ class Shift(models.Model):
         self.hours = adjusted_end_time - adjusted_start_time
 
         # Set the owner's name as the shift's title, _Unclaimed_ if the shift has no owner.
+        """
         if self.owner is None:
             self.title = self.location[0] + "-" + "Unclaimed"
         else:
             self.title = self.location[0] + "-" + str(self.owner)
+        """
 
         super(Shift, self).save(*args, **kwargs)
 

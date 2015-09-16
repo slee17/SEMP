@@ -138,17 +138,20 @@ def get_shifts(location):
             if is_on_sale(shift.id, date):
                 sale_status = True
 
+            current_owner = get_current_owner(shift.id, date)
+
             # A custom field for brief description of a shift instance. It includes the minimum
             # essential information about the shift.
             description = str(shift.day_of_the_week) + "<br>" + \
                           str(shift.start_time) + "-" + str(shift.end_time) + "<br>" \
-                          "Owner: %s" % str(shift.owner)
+                          "Owner: %s" % str('current_owner')
+            title = str(shift.location[0]) + "-" + str(current_owner)
 
             # Append the minimum required information about the shift to the place holder.
-            shifts.append({'id': shift.id, 'title': str(shift.title), 'start': start, 'end': end,
+            shifts.append({'id': shift.id, 'title': title, 'start': start, 'end': end,
                            'description': description, 'sale_status': str(sale_status)}) # 'sale_status': sale_status
     return shifts
-    
+
 def get_latest_sale(shift_id, shift_date):
     """ A helper function that gets the latest sale of a shift instance.
     input: the ID of the shift, the date of the shift instance
@@ -171,9 +174,8 @@ def get_current_owner(shift_id, shift_date):
         # Then the original owner is also the current owner.
         current_owner = shift.owner
     # Otherwise (i.e. if the shift has been on sale before)...
-    else: 
-        on_sale = is_on_sale(shift_id, shift_date)
-        if on_sale:
+    else:
+        if is_on_sale(shift_id, shift_date):
             current_owner = latest_sale.seller
         else:
             current_owner = latest_sale.buyer
@@ -222,6 +224,9 @@ def sales(request):
         else:
             raise PermissionDenied
     elif 'buy' in request.POST:
+        # If the shift is not on sale, redirect to the calendar (fix later to show a pop-up with a relevant message).
+        if not is_on_sale(shift_id, shift_date):
+            HttpResponseRedirect(reverse('shifts:view_shifts'))
         sale = get_latest_sale(shift_id, shift_date)
         sale.buyer = request.user
         sale.save()
